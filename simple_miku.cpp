@@ -16,7 +16,7 @@ namespace {
 		Colors Tshirt;
 	};
 
-	class Miku {
+	class Miku final {
 	private:
 		vector <string> *songs;
 		struct Outfit *outfit;
