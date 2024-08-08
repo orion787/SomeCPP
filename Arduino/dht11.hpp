@@ -15,19 +15,19 @@ public:
     DHT11Sensor(uint8_t pin, uint8_t type) : dht(pin, type), humidity(NAN), temperatureC(NAN), temperatureF(NAN), heatIndexC(NAN), heatIndexF(NAN) {dht.begin();}
 
 
-    float getTempC(){
+    float getTempC() noexcept{
       return temperatureC;
     }
 
-    float getTempHum(){
+    float getTempHum() noexcept{
       return humidity;
     }
 
-    void begin() {
+    void begin() noexcept{
         dht.begin();
     }
 
-    void readData() {
+    void readData() noexcept{
         humidity = dht.readHumidity();
         temperatureC = dht.readTemperature();
         temperatureF = dht.readTemperature(true);
@@ -43,7 +43,7 @@ public:
         heatIndexF = dht.computeHeatIndex(temperatureF, humidity);
     }
 
-    void printDataToSerial() {
+    void printDataToSerial() noexcept{
         Serial.print(F("Влажность: "));
         Serial.print(humidity);
         Serial.print(F("%  Температура: "));
@@ -57,4 +57,3 @@ public:
         Serial.println(F("°F"));
     }
 };
-//--------------------------------
