@@ -11,19 +11,18 @@ public:
   typedef void (*Action)();
 
   Event(Predicate pred, Action trueAct, Action falseAct)
-    : predicate(pred), actionTrue(trueAct), actionFalse(falseAct) {}
+    : predicate(pred), action1(trueAct), action2(falseAct) {}
 
-  void handleEvent(T& data) {
+  void handleEvent(T& data) noexcept {
     if (predicate(data)) {
-      actionFalse();
+      action2();
     } else {
-      actionTrue();
+      action1();
     }
   }
 
 private:
   Predicate predicate;
-  Action actionTrue;
-  Action actionFalse;
+  Action action1;
+  Action action2;
 };
-//--------------------------------
